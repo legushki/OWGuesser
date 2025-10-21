@@ -1,0 +1,38 @@
+#gamemode-list {
+  display: flex;
+  justify-content: center;
+}
+
+.gamemode-header {
+  display: flex;
+  margin-top: 6rem;
+  /* margin-bottom: 25px; */
+  font-family: 'BigNoodleTitlingOblique';
+  justify-content: space-between;
+  align-items: center;
+  min-width: 28rem;
+}
+
+.select {
+  color: black;
+  width: 18rem;
+}
+
+.submit {
+  font-family: "Inter";
+  background-color: #FF431A;
+  font-size: 2em;
+  padding: 0.2em;
+  padding-right: 0.8em;
+  padding-left: 0.8em;
+  font-weight: 800;
+  margin-top: 2em;
+  border: 0.085em #1defef00 solid;
+  border-radius: 0.3em;
+}
+
+.submit:hover
+{
+  transition: 0.1s; 
+  border: 0.085em #1defef solid;
+}

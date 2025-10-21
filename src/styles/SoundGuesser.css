@@ -1,0 +1,27 @@
+.sound-effects {
+    display: flex;
+    width: 62rem;
+    margin-top: 3rem;    
+    justify-content: space-around;
+    align-items: center;
+}
+
+.ability-selection {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    width: 62rem;
+    margin-top: 3.5rem;
+}
+
+.character-option {
+    display: flex;
+    align-items: center;
+}
+
+.character-portrait {
+    width: 2rem;
+    /* min-width: 30px; */
+    aspect-ratio: 1;
+    margin-right: 1rem;
+}

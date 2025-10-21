@@ -1,0 +1,43 @@
+.sound-effects__effect {
+    display: flex;
+    flex-flow: column;
+    position: relative;
+}
+
+.sound-effects__button {
+    background-color: #45516b;
+    width: 9.4rem;
+    aspect-ratio: 1;
+    border-radius: 1.4rem;
+    border: 0.25rem #1d222d solid;
+    transition: 0.3s;
+    transition-property: border-color;
+}
+
+.sound-effects__button svg {
+    width: 40%;
+    height: 40%;
+    transition: 0.3s;
+}
+
+.sound-effects__button:hover svg {
+    transform: scale(110%);
+    transition: 0.3s;
+}
+
+.sound-effects__button:hover {
+    border: 0.25rem #2b93df solid;
+    transition: 0.3s;
+}
+
+.sound-effects__description {
+    position: absolute;
+    /* top: max(9.36rem, 100px); */
+    top: 9.4rem;
+    display: flex;
+    align-self: center;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+    text-wrap: nowrap;
+}
