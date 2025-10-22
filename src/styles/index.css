@@ -34,8 +34,6 @@ button {
 
 body, html {
   font-size: 1vw;
-  /* font-size: clamp(0.7rem, 1vw, 3rem); */
-  /* font-size: clamp(0.7rem, 0.5rem + 1vw, 1rem); */
 }
 
 body,
@@ -45,7 +43,6 @@ body,
   flex-flow: column;
   min-width: 320px;
   min-height: 100vh;
-  /* justify-content: center; */
   align-items: center;
   background-image: url('../assets/background.png');
   background-size: cover;
@@ -75,16 +72,3 @@ h1 {
   font-weight: 400;
   src: local('BigNoodleTitling'), url('https://fonts.cdnfonts.com/s/24262/big_noodle_titling_oblique.woff') format('woff');
 }
-
-/* 
-@media (min-resolution: 144dpi) {
-  html {
-    font-size: 20px;
-  }
-}
-
-@media (min-resolution: 192dpi) {
-  html {
-    font-size: 24px;
-  }
-} */

@@ -5,8 +5,7 @@
 
 .gamemode-header {
   display: flex;
-  margin-top: 6rem;
-  /* margin-bottom: 25px; */
+  margin-top: 4rem;
   font-family: 'BigNoodleTitlingOblique';
   justify-content: space-between;
   align-items: center;

@@ -32,7 +32,6 @@
 
 .sound-effects__description {
     position: absolute;
-    /* top: max(9.36rem, 100px); */
     top: 9.4rem;
     display: flex;
     align-self: center;

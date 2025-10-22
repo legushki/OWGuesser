@@ -27,5 +27,3 @@ export const customSelectStyles =
     )
 
 }
-
-// export default customSelectStyles;

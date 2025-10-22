@@ -21,7 +21,6 @@
 
 .character-portrait {
     width: 2rem;
-    /* min-width: 30px; */
     aspect-ratio: 1;
     margin-right: 1rem;
 }

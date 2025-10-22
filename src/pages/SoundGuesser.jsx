@@ -44,10 +44,6 @@ function SoundGuesser() {
     const handleSubmit = () => {
         if (!selectedAbility || !lastPickedAbility.value) return;
 
-        // console.log(lastPickedAbility.value + " " + selectedAbility.value);
-        // if(selectedAbility.value === lastPickedAbility.value) console.log("true!!!!");
-        // else console.log("false :(")
-
         let newStates = [...buttonStates];
         newStates[lastPickedAbility.index].isCorrect = selectedAbility.value === lastPickedAbility.value;
         newStates[lastPickedAbility.index].isActive = false;
@@ -77,7 +73,7 @@ function SoundGuesser() {
             </div>
             <div className="ability-selection">
                 <Select styles={{...customSelectStyles, indicatorsContainer: () => ({ display: "none" })}}
-                    className='select character-selector' options={characterOptions} onChange={onCharacterSelect}
+                    className='select' options={characterOptions} onChange={onCharacterSelect}
                     placeholder="Search for a character..." value={selectedCharacter}
                     formatOptionLabel={(character) => (
                         <div className='character-option'>
@@ -86,7 +82,7 @@ function SoundGuesser() {
                         </div>
                     )}></Select>
                 <Select styles={customSelectStyles} 
-                    className='select ability-selector' options={abilityOptions} onChange={onAbilitySelect}
+                    className='select' options={abilityOptions} onChange={onAbilitySelect}
                     placeholder="Select an ability..." value={selectedAbility}></Select>
             </div>
             <button className='submit' onClick={handleSubmit}>SUBMIT</button>
