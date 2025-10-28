@@ -13,14 +13,3 @@
     width: 62rem;
     margin-top: 3.5rem;
 }
-
-.character-option {
-    display: flex;
-    align-items: center;
-}
-
-.character-portrait {
-    width: 2rem;
-    aspect-ratio: 1;
-    margin-right: 1rem;
-}

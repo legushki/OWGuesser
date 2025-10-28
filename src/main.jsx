@@ -6,13 +6,15 @@ import './styles/index.css'
 import App from './pages/App.jsx'
 import SoundGuesser from './pages/SoundGuesser.jsx'
 import Temp from '../public/assets/soundwave.png'
+import FeetGuesser from './pages/FeetGuesser.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
   <BrowserRouter>
     <Routes>
       <Route path = "/" element ={<App />}/>
-      <Route path = "sounds" element = {<SoundGuesser/>}/>  
+      <Route path = "sounds" element = {<SoundGuesser/>}/> 
+      <Route path = "feet" element = {<FeetGuesser/>}/> 
     </Routes>
   </BrowserRouter>
   </StrictMode>,
