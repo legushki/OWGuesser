@@ -1,0 +1,37 @@
+.modal-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow: none;
+  background-color: #00000050;
+  z-index: 99;
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  position: absolute;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  width: 30rem;
+  height: 26rem;
+  background-color: #273347;
+  border: 0.2rem solid #334b69;
+  border-radius: 1rem;
+}
+.close-modal {
+  position: absolute;
+  font-size: 1rem;
+  top: 1rem;
+  right: 1rem;
+  padding: 0;
+}
+.modal-content span
+{
+  font-size: 1.5em;
+  text-align: center;
+}

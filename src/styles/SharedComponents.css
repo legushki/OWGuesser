@@ -1,0 +1,76 @@
+.gamemode-header {
+  display: flex;
+  margin-top: 4em;
+  font-family: "BigNoodleTitlingOblique";
+  justify-content: space-between;
+  align-items: center;
+  min-width: 28em;
+}
+
+.select {
+  color: black;
+  width: 18em;
+}
+
+.btn {
+  height: 3.5rem;
+  text-wrap: nowrap;
+  font-family: "Inter";
+  background-color: #ff431a;
+  font-size: 2em;
+  padding: 0.4rem;
+  padding-right: 1.6rem;
+  padding-left: 1.6rem;
+  font-weight: 800;
+  margin-top: 1rem;
+  border: 0.17rem #1defef00 solid;
+  border-radius: 0.3rem;
+}
+
+.btn:hover {
+  transition: 0.1s;
+  border: 0.17rem #1defef solid;
+}
+
+.btn.secondary
+{
+  background-color: #E2E3E6;
+  color: #101424;
+  font-weight: 700;
+}
+
+.character-option {
+  display: flex;
+  align-items: center;
+}
+.character-option span {
+  margin-left: 1em;
+}
+.character-portrait {
+  width: 2em;
+  max-height: 2em;
+  aspect-ratio: 1;
+}
+.big-character-portrait {
+  width: 5em;
+  max-height: 5em;
+  aspect-ratio: 1;
+}
+.flex-row {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}
+.flex-column {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+.vertical-divider {
+  width: 0.15em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  height: 100%;
+  background-color: #334b69;
+}
+

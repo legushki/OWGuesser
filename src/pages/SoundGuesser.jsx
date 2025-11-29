@@ -85,7 +85,7 @@ function SoundGuesser() {
                     className='select' options={abilityOptions} onChange={onAbilitySelect}
                     placeholder="Select an ability..." value={selectedAbility}></Select>
             </div>
-            <button className='submit' onClick={handleSubmit}>SUBMIT</button>
+            <button className='btn' onClick={handleSubmit}>SUBMIT</button>
         </>
     );
 }

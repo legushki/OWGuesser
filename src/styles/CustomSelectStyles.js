@@ -1,5 +1,3 @@
-import { faPersonWalkingDashedLineArrowRight } from "@fortawesome/free-solid-svg-icons";
-
 export const customSelectStyles = 
 {
     indicatorsContainer: () =>
