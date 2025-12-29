@@ -2,30 +2,27 @@ import "../styles/ScreenshotGuesser.css";
 import { Link } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faCopy } from "@fortawesome/free-solid-svg-icons";
-import CharactersJson from "../assets/characters.json";
+import MapsJson from "../assets/maps.json";
 import { useEffect, useState } from "react";
 import seedrandom from "seedrandom";
-import CharacterSelect from "../components/CharacterSelect.jsx";
+import MapSelect from "../components/MapSelect.jsx";
 import Modal from "../components/Modal.jsx";
 import Countdown from "../components/Countdown.jsx";
 import Cookies from "js-cookie";
 
-function FeetGuesser() {
-  const options = CharactersJson.map((char) => ({
-    value: char.key,
-    label: char.name,
-    portrait: char.portrait,
+function MapGuesser() {
+  const options = MapsJson.map((map) => ({
+    value: map,
+    label: map,
   }));
 
-  const [character, setCharacter] = useState();
-  const [selectedCharacter, setSelectedCharacter] = useState(
-    options[0]
-  );
+  const [map, setMap] = useState();
+  const [selectedMap, setSelectedMap] = useState();
   const [attempts, setAttempts] = useState([]);
   const [isGameFinished, setIsGameFinished] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const allImages = import.meta.glob("../assets/feet/*/*.{png,jpg,jpeg}");
+  const allImages = import.meta.glob("../assets/maps/*/*.{png,jpg,jpeg}");
   const [image, setImage] = useState();
   useEffect(() => {
     const today = new Date();
@@ -35,24 +32,25 @@ function FeetGuesser() {
         today.getUTCDate()
     );
 
-    let char = null;
-    let charImages = [];
-  
-    while (charImages.length === 0) {
-      char = options[Math.floor(rng() * options.length)];
-      charImages = Object.keys(allImages).filter((path) =>
-        path.includes(`${char.value}/`)
+    let map = null;
+    let mapImages = [];
+    while (mapImages.length === 0) {
+      map = MapsJson[Math.floor(rng() * MapsJson.length)];
+      mapImages = Object.keys(allImages).filter((path) =>
+        path.includes(`${map}/`)
       );
     }
-    setCharacter(char);
-    const imgNum = Math.floor(rng() * charImages.length);
-    loadImage(charImages[imgNum]);
 
-    const cookie = Cookies.get("feetAttempts");
+    setMap({ value: map, label: map });
+
+    const imgNum = Math.floor(rng() * mapImages.length);
+    loadImage(mapImages[imgNum]);
+
+    const cookie = Cookies.get("mapsAttempts");
     if (cookie) {
       const prevAttempts = JSON.parse(cookie);
       setAttempts(prevAttempts);
-      if (prevAttempts[prevAttempts.length - 1].value == char.value) {
+      if (prevAttempts[prevAttempts.length - 1].value == map) {
         setIsGameFinished(true);
         setIsModalOpen(true);
       }
@@ -62,7 +60,7 @@ function FeetGuesser() {
   const updateCookies = (attempts) => {
     const midnight = new Date();
     midnight.setUTCHours(23, 59, 59, 99);
-    Cookies.set("feetAttempts", JSON.stringify(attempts), {
+    Cookies.set("mapsAttempts", JSON.stringify(attempts), {
       expires: midnight,
     });
   };
@@ -73,35 +71,40 @@ function FeetGuesser() {
       return;
     }
     if (
-      selectedCharacter === null ||
+      selectedMap === null ||
       attempts.length >= 5 ||
-      attempts.find((char) => char.value === selectedCharacter.value)
+      attempts.find((map) => map.value === selectedMap.value)
     )
       return;
 
-    setAttempts([...attempts, selectedCharacter]);
-    updateCookies([...attempts, selectedCharacter]);
+    setAttempts([...attempts, selectedMap]);
+    updateCookies([...attempts, selectedMap]);
 
-    if (selectedCharacter.value == character.value) {
+    if (selectedMap.value == map.value) {
       setIsGameFinished(true);
       setIsModalOpen(true);
     }
   };
 
-  const onCharacterSelect = (char) => setSelectedCharacter(char);
+  const onMapSelect = (map) => setSelectedMap(map);
 
   const loadImage = async (key) =>
     await allImages[key]().then((result) => setImage(result.default));
 
+  const getAttemptEmojis = () => {
+    let emojis = "";
+    for (let i = 0; i < attempts.length - 1; i++) emojis += "🔴";
+    emojis += "🟢";
+    for (let i = emojis.length / 2; i < 5; i++) emojis += "⚪";
+
+    return emojis;
+  };
+
   const [showClipboardMsg, setShowClipboardMsg] = useState(false);
   function ModalContent() {
-    const isVictory = attempts.length <= 5;
+    const isVictory = attempts[attempts.length - 1].value === map.value;
     const onClipboardCopy = () => {
-      let emojis = "";
-      for (let i = 0; i < attempts.length - 1; i++) emojis += "🟥";
-      emojis += "🟩";
-      for (let i = emojis.length / 2; i < 5; i++) emojis += "⬜";
-      const clipboardText = emojis;
+      const clipboardText = getAttemptEmojis();
       navigator.clipboard.writeText(clipboardText);
       setShowClipboardMsg(true);
       setTimeout(() => setShowClipboardMsg(false), 1500);
@@ -111,15 +114,10 @@ function FeetGuesser() {
       <>
         <h2>{isVictory ? "You Won!" : "You Lost :("}</h2>
         <div className="your-guess flex-row">
-          <img
-            src={character.portrait}
-            className="big-character-portrait"
-            style={{ width: "5em" }}
-          />
           <span>
-            The character is:
+            The map is:
             <br />
-            {character.label}
+            {map.label}
           </span>
         </div>
         <div className="flex-row" style={{ width: "100%" }}>
@@ -127,13 +125,7 @@ function FeetGuesser() {
             <span>Your tries:</span>
             <br />
             <div className="attempt-icons">
-              {attempts.map((char, key) => (
-                <img
-                  src={char.portrait}
-                  key={key}
-                  className="character-portrait"
-                />
-              ))}
+              <span>{getAttemptEmojis()}</span>
             </div>
           </div>
           <div className="vertical-divider" />
@@ -165,7 +157,7 @@ function FeetGuesser() {
 
   return (
     <>
-      {isModalOpen && character && (
+      {isModalOpen && map && (
         <Modal onClose={() => setIsModalOpen(false)}>{ModalContent()}</Modal>
       )}
       <div className="gamemode-header">
@@ -178,14 +170,14 @@ function FeetGuesser() {
             ></FontAwesomeIcon>
           </Link>
         </div>
-        <h1>GUESS THE CHARACTER</h1>
+        <h1>GUESS THE MAP</h1>
       </div>
       <img className="screenshot" src={image} />
-      <CharacterSelect
-        selectedCharacter={selectedCharacter}
-        characterOptions={options}
-        onCharacterSelect={onCharacterSelect}
-      ></CharacterSelect>
+      <MapSelect
+        options={options}
+        selectedOption={selectedMap}
+        onOptionSelect={onMapSelect}
+      />
       <button className="btn" onClick={handleSubmit}>
         {isGameFinished ? "RESULTS" : "SUBMIT"}
       </button>
@@ -193,20 +185,9 @@ function FeetGuesser() {
         <span className="attempt-counter">
           {"Attempts: " + attempts.length + "/5"}
         </span>
-        <div className="attempt-icons">
-          {attempts.map((char, index) => {
-            return (
-              <img
-                key={index}
-                className="character-portrait"
-                src={char.portrait}
-              ></img>
-            );
-          })}
-        </div>
       </div>
     </>
   );
 }
 
-export default FeetGuesser;
+export default MapGuesser;

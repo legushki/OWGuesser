@@ -2,7 +2,8 @@
   display: flex;
   margin-top: 4em;
   font-family: "BigNoodleTitlingOblique";
-  justify-content: space-between;
+  justify-content: center;
+  gap: 3em;
   align-items: center;
   min-width: 28em;
 }
@@ -10,10 +11,17 @@
 .select {
   color: black;
   width: 18em;
+  margin-bottom: 1rem;
+}
+.select svg
+{
+  width: 1.5em;
+  height: 1.5em;
 }
 
 .btn {
   height: 3.5rem;
+  line-height: 0;
   text-wrap: nowrap;
   font-family: "Inter";
   background-color: #ff431a;
@@ -22,7 +30,7 @@
   padding-right: 1.6rem;
   padding-left: 1.6rem;
   font-weight: 800;
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
   border: 0.17rem #1defef00 solid;
   border-radius: 0.3rem;
 }
@@ -32,9 +40,8 @@
   border: 0.17rem #1defef solid;
 }
 
-.btn.secondary
-{
-  background-color: #E2E3E6;
+.btn.secondary {
+  background-color: #e2e3e6;
   color: #101424;
   font-weight: 700;
 }
@@ -73,4 +80,27 @@
   height: 100%;
   background-color: #334b69;
 }
-
+.your-tries {
+  width: 100%;
+  text-align: center;
+}
+.timer {
+  width: 100%;
+  text-align: center;
+}
+.modal-button-row {
+  margin-top: auto;
+  margin-bottom: auto;
+  font-size: 0.75em;
+  width: 100%;
+  align-items: center;
+  gap: 1rem;
+}
+.clipboard-text {
+  font-size: 0.8rem;
+  position: absolute;
+  bottom: 0.5em;
+}
+.clipboard-text svg {
+  font-size: 1.2rem;
+}

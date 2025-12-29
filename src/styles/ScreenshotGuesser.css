@@ -1,5 +1,5 @@
 .screenshot {
-  border: 1px solid black;
+  border: 0.1em solid black;
   width: 32em;
   height: 18em;
   margin-bottom: 1em;
@@ -15,29 +15,4 @@
   justify-content: space-evenly;
   margin-bottom: 2em;
 }
-.your-tries {
-  width: 100%;
-  text-align: center;
-}
-.timer {
-  width: 100%;
-  text-align: center;
-}
-.modal-button-row
-{
-  margin-top: 2.5em;
-  font-size: 0.75rem;
-  width: 100%;
-  justify-content: center;
-  gap: 1rem;
-}
-.clipboard-text
-{
-  margin-top: 1em;
-  font-size: 0.8rem;
-  /* width: 100%; */
-}
-.clipboard-text svg
-{
-  font-size: 1.2rem;
-}
+  

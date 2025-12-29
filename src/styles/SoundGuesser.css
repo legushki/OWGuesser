@@ -13,3 +13,17 @@
     width: 62rem;
     margin-top: 3.5rem;
 }
+.results-table
+{
+    font-size: 0.8em;
+    border-spacing: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1em;
+    text-align: left;
+}
+.results-table td
+{
+    padding-right: 2em;
+    padding-left: 2em;
+}

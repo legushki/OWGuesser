@@ -12,6 +12,10 @@
     border: 0.25rem #1d222d solid;
     transition: 0.3s;
     transition-property: border-color;
+    padding:0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }
 
 .sound-effects__button svg {
