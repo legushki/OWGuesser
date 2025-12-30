@@ -5,7 +5,6 @@ import './styles/index.css'
 //React.lazy()
 import App from './pages/App.jsx'
 import SoundGuesser from './pages/SoundGuesser.jsx'
-import Temp from '../public/assets/soundwave.png'
 import FeetGuesser from './pages/FeetGuesser.jsx'
 import MapGuesser from './pages/MapGuesser.jsx'
 
