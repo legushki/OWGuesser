@@ -101,7 +101,7 @@ function FeetGuesser() {
       for (let i = 0; i < attempts.length - 1; i++) emojis += "🟥";
       emojis += "🟩";
       for (let i = emojis.length / 2; i < 5; i++) emojis += "⬜";
-      const clipboardText = emojis;
+      const clipboardText = "My attempt at guessing today's #OWGuesser character: \n" + emojis + "\nhttps://OWGuesser.com";
       navigator.clipboard.writeText(clipboardText);
       setShowClipboardMsg(true);
       setTimeout(() => setShowClipboardMsg(false), 1500);

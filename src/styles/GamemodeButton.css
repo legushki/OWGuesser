@@ -40,7 +40,7 @@
 .gamemode-button h1
 {
     margin: 0;
-    margin-top: 10px;
+    margin-top: 0.35em;
     color: #070417;
     font-size: 3em;
     font-family: 'BigNoodleTitling';
@@ -50,7 +50,6 @@
     font-weight: 200;
     font-size: 1.2em;
     text-align: center;
-    margin: 25px;
-    margin-top: 10px;
+    margin: 0.5em;
     color: black;
 }

@@ -138,7 +138,7 @@ function SoundGuesser() {
         if (attempt == randomAbilities[index].name) emojis += "✅";
         else emojis += "❌";
       });
-      const clipboardText = emojis;
+      
       navigator.clipboard.writeText(clipboardText);
       setShowClipboardMsg(true);
       setTimeout(() => setShowClipboardMsg(false), 1500);

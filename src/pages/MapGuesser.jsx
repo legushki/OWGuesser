@@ -104,7 +104,8 @@ function MapGuesser() {
   function ModalContent() {
     const isVictory = attempts[attempts.length - 1].value === map.value;
     const onClipboardCopy = () => {
-      const clipboardText = getAttemptEmojis();
+      const emojis = getAttemptEmojis();
+      const clipboardText = "My attempt at guessing today's #OWGuesser map: \n" + emojis + "\nhttps://OWGuesser.com";
       navigator.clipboard.writeText(clipboardText);
       setShowClipboardMsg(true);
       setTimeout(() => setShowClipboardMsg(false), 1500);

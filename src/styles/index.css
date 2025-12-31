@@ -51,6 +51,10 @@ h1 {
   justify-content: center;
   align-items: center;
 }
+p
+{
+  margin: 0
+}
 
 
 @font-face {
