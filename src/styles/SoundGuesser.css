@@ -24,6 +24,14 @@
 }
 .results-table td
 {
+    padding: 0.3em;
     padding-right: 2em;
     padding-left: 2em;
+}
+.results-table div
+{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    gap: 0.25em;
 }

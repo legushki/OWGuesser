@@ -1,8 +1,8 @@
 .screenshot {
   border: 0.1em solid black;
-  width: 32em;
-  height: 18em;
-  margin-bottom: 1em;
+  width: 40em;
+  height: 22.5em;
+  margin-bottom: 0.5em;
 }
 .attempt-icons {
   display: flex;
@@ -10,9 +10,56 @@
   justify-content: center;
   gap: 0.5em;
 }
-.your-guess {
-  width: 80%;
+.answers-row
+{
+  width: 75%;
+  display: flex;
+  flex-flow: row; 
   justify-content: space-evenly;
-  margin-bottom: 2em;
+  margin-top: 0.5em;
+  margin-bottom: auto;
 }
-  
+.answers-column
+{
+  text-align: center;
+}
+.answers-column h2
+{
+  font-size: 2.4em;
+  margin: 0;
+  line-height: 1em;
+  font-family: "BigNoodleTitlingOblique";
+}
+.image-select-buttons {
+  display: flex;
+  gap: 1em;
+  margin-bottom: 0.5em;
+}
+.image-select-buttons button {
+  background-color: #293650;
+  color: #23A2D1;
+  border-radius: 0.4em;
+  font-size: 1.2em;
+  padding: 0.5em;
+  box-sizing: border-box;
+}
+.image-select-buttons button.active {
+  outline: 0.2em solid transparent;
+  outline-offset: -0.1em;
+  background-color: #3480B5;
+  color: white;
+}
+.image-select-buttons button:disabled
+{
+  opacity:0.6;
+}
+.image-select-buttons button.correct {
+  background-color: #0ba879 !important;
+  outline-color: #066347;
+  color: white;
+}
+.image-select-buttons button.incorrect {
+  background-color: #ca2121 !important;
+  outline-color: #911616;
+  color: white;
+}

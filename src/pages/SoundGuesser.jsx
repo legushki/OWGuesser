@@ -16,7 +16,7 @@ import Cookies from "js-cookie";
 
 function SoundGuesser() {
   const [buttonStates, setButtonStates] = useState(
-    Array.from({ length: 4 }, () => ({ isActive: false, isCorrect: null }))
+    Array.from({ length: 4 }, () => ({ isActive: false, isCorrect: null })),
   );
   const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [selectedAbility, setSelectedAbility] = useState(null);
@@ -33,7 +33,7 @@ function SoundGuesser() {
     portrait: hero.portrait,
   }));
   const [abilityOptions, setAbilityOptions] = useState([]);
-  const [randomAbilities, setRandomAbilities] = useState([]);
+  const [todaysAbilities, setTodaysAbilities] = useState([]);
   const [attempts, setAttempts] = useState([null, null, null, null]);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ function SoundGuesser() {
     const rng = seedrandom(
       today.getUTCFullYear() * 10000 +
         (today.getUTCMonth() + 1) * 100 +
-        today.getUTCDate()
+        today.getUTCDate(),
     );
     let abilities = [];
     let recorded = [...RecordedAbilitiesJson];
@@ -54,7 +54,7 @@ function SoundGuesser() {
       }
       failsafe++;
     }
-    setRandomAbilities(abilities);
+    setTodaysAbilities(abilities);
 
     const cookie = Cookies.get("soundAttempts");
     if (cookie) {
@@ -85,10 +85,10 @@ function SoundGuesser() {
     setSelectedCharacter(character);
     setSelectedAbility(null);
     let abilities = CharactersJson.find(
-      (hero) => hero.key == character.value
+      (hero) => hero.key == character.value,
     ).abilities;
     setAbilityOptions(
-      abilities.map((ability) => ({ value: ability, label: ability }))
+      abilities.map((ability) => ({ value: ability, label: ability })),
     );
   };
   const onAbilitySelect = (ability) => setSelectedAbility(ability);
@@ -96,10 +96,12 @@ function SoundGuesser() {
   const handleClick = async (ability, index) => {
     setLastPickedButton({ ability: ability, index: index });
 
+    setTimeout()
+
     const newStates = buttonStates.map((state, i) =>
       index === i
         ? { ...state, isActive: !state.isActive }
-        : { ...state, isActive: false }
+        : { ...state, isActive: false },
     );
     setButtonStates(newStates);
   };
@@ -135,10 +137,10 @@ function SoundGuesser() {
     const onClipboardCopy = () => {
       let emojis = "";
       attempts.forEach((attempt, index) => {
-        if (attempt == randomAbilities[index].name) emojis += "✅";
+        if (attempt == todaysAbilities[index].name) emojis += "✅";
         else emojis += "❌";
       });
-      
+
       navigator.clipboard.writeText(clipboardText);
       setShowClipboardMsg(true);
       setTimeout(() => setShowClipboardMsg(false), 1500);
@@ -147,41 +149,56 @@ function SoundGuesser() {
     let attemptPortraits = [];
     attempts.forEach((attempt) => {
       attemptPortraits.push(
-        CharactersJson.find((char) => char.abilities.includes(attempt)).portrait
+        CharactersJson.find((char) => char.abilities.includes(attempt))
+          .portrait,
       );
     });
 
     return (
       <>
-        <h2 style={{ marginBottom: 0 }}>Results:</h2>
+        <h2 style={{ marginBottom: 0 }}>RESULTS</h2>
         <div className="your-tries">
           <table className="results-table">
             <tbody>
-              {randomAbilities.map((ability, index) => (
+              {todaysAbilities.map((ability, index) => (
                 <tr key={index}>
                   <td>
-                    <img
-                      src={ability.character.portrait}
-                      className="character-portrait"
-                    />
-                    <span>{ability.name}</span>
+                    <div>
+                      <img
+                        src={ability.character.portrait}
+                        className="character-portrait"
+                      />
+                      <span>{ability.name}</span>
+                    </div>
                   </td>
                   <td>
-                    <img
-                      src={attemptPortraits[index]}
-                      className="character-portrait"
-                    />
-                    <span>{attempts[index]}</span>
+                    <div>
+                      <img
+                        src={attemptPortraits[index]}
+                        className="character-portrait"
+                      />
+                      <span
+                        className={
+                          attempts[index] !== todaysAbilities[index].name
+                            ? "incorrect-text"
+                            : undefined
+                        }
+                      >
+                        {attempts[index]}
+                      </span>
+                    </div>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <div className="timer">
-          <span>Until next game:</span>
-          <br />
-          <Countdown />
+        <div className="modal-details">
+          <div className="timer">
+            <span>Until next game:</span>
+            <br />
+            <Countdown />
+          </div>
         </div>
         <div className="flex-row modal-button-row">
           <button className="btn secondary" onClick={onClipboardCopy}>
@@ -221,14 +238,14 @@ function SoundGuesser() {
         <h1>GUESS THE ABILITIES</h1>
       </div>
       <div className="sound-effects">
-        {randomAbilities &&
+        {todaysAbilities &&
           buttonStates.map((state, index) => (
             <SoundButton
               isCorrect={state.isCorrect}
               key={index}
               isActive={state.isActive}
-              ability={randomAbilities[index]}
-              clickEffect={() => handleClick(randomAbilities[index], index)}
+              ability={todaysAbilities[index]}
+              clickEffect={() => handleClick(todaysAbilities[index], index)}
             ></SoundButton>
           ))}
       </div>

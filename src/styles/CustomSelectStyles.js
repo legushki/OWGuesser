@@ -16,8 +16,8 @@ export const customSelectStyles = {
     ...base,
     maxHeight: "15em",
     overflow: "auto",
-    paddingTop: "1em",
-    paddingBottom: "1em",
+    paddingTop: "0.2em",
+    paddingBottom: "0.2em",
   }),
   control: (base, state) => ({
     ...base,

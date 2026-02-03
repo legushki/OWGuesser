@@ -30,7 +30,12 @@ function SoundButton({ isActive, isCorrect, ability, clickEffect }) {
 
   useEffect(() => {
     if (audio == null) return;
-    isActive ? audio.play() : audio.pause();
+    if(isActive)
+    {
+      audio.currentTime = 0;
+      audio.play();
+    }
+    else audio.pause();
   }, [isActive, audio]);
 
   return (
