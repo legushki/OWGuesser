@@ -32,15 +32,17 @@ function SoundButton({ isActive, isCorrect, ability, clickEffect }) {
     if (audio == null) return;
     if(isActive)
     {
+      // console.log(audio.duration);
       audio.currentTime = 0;
       audio.play();
+      
     }
     else audio.pause();
   }, [isActive, audio]);
 
   return (
     <div className="sound-effects__effect">
-      <button className={"sound-effects__button"} onClick={clickEffect}>
+      <button className={"sound-effects__button"} onClick={() => clickEffect(audio.duration)}>
         {getIcon()}
       </button>
       <div className="sound-effects__description">

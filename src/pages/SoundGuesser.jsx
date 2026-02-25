@@ -1,7 +1,7 @@
 import "../styles/SoundGuesser.css";
 import { customSelectStyles } from "../styles/CustomSelectStyles";
 import { Link } from "react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faCopy } from "@fortawesome/free-solid-svg-icons";
 import SoundButton from "../components/SoundButton";
@@ -93,10 +93,19 @@ function SoundGuesser() {
   };
   const onAbilitySelect = (ability) => setSelectedAbility(ability);
 
-  const handleClick = async (ability, index) => {
+  const timeoutRef = useRef();
+  const handleClick = async (ability, index, duration) => {
     setLastPickedButton({ ability: ability, index: index });
 
-    setTimeout()
+    clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+      const newStates = buttonStates.map((state) => ({
+        ...state,
+        isActive: false,
+      }));
+      setButtonStates(newStates);
+    }, duration * 1000);
+    // console.log(duration);
 
     const newStates = buttonStates.map((state, i) =>
       index === i
@@ -140,7 +149,10 @@ function SoundGuesser() {
         if (attempt == todaysAbilities[index].name) emojis += "✅";
         else emojis += "❌";
       });
-
+      const clipboardText =
+        "My attempt at guessing today's #OWGuesser sound effects: \n" +
+        emojis +
+        "\nhttps://OWGuesser.com";
       navigator.clipboard.writeText(clipboardText);
       setShowClipboardMsg(true);
       setTimeout(() => setShowClipboardMsg(false), 1500);
@@ -225,48 +237,52 @@ function SoundGuesser() {
       {isModalOpen && (
         <Modal onClose={() => setIsModalOpen(false)}>{ModalContent()}</Modal>
       )}
-      <div className="gamemode-header">
-        <div className="back-button">
-          <Link to={"/"}>
-            <FontAwesomeIcon
-              icon={faArrowLeft}
-              size="4x"
-              color="#d0d0d0"
-            ></FontAwesomeIcon>
-          </Link>
+      <div className="gamemode">
+        <div className="gamemode-header">
+          <div className="back-button">
+            <Link to={"/"}>
+              <FontAwesomeIcon
+                icon={faArrowLeft}
+                size="4x"
+                color="#d0d0d0"
+              ></FontAwesomeIcon>
+            </Link>
+          </div>
+          <h1>GUESS THE ABILITIES</h1>
         </div>
-        <h1>GUESS THE ABILITIES</h1>
+        <div className="sound-effects">
+          {todaysAbilities &&
+            buttonStates.map((state, index) => (
+              <SoundButton
+                isCorrect={state.isCorrect}
+                key={index}
+                isActive={state.isActive}
+                ability={todaysAbilities[index]}
+                clickEffect={(duration) =>
+                  handleClick(todaysAbilities[index], index, duration)
+                }
+              ></SoundButton>
+            ))}
+        </div>
+        <div className="ability-selection">
+          <CharacterSelect
+            selectedCharacter={selectedCharacter}
+            characterOptions={characterOptions}
+            onCharacterSelect={onCharacterSelect}
+          ></CharacterSelect>
+          <Select
+            styles={customSelectStyles}
+            className="select"
+            options={abilityOptions}
+            onChange={onAbilitySelect}
+            placeholder="Select an ability..."
+            value={selectedAbility}
+          ></Select>
+        </div>
+        <button className="btn" onClick={handleSubmit}>
+          {isGameFinished ? "RESULTS" : "SUBMIT"}
+        </button>
       </div>
-      <div className="sound-effects">
-        {todaysAbilities &&
-          buttonStates.map((state, index) => (
-            <SoundButton
-              isCorrect={state.isCorrect}
-              key={index}
-              isActive={state.isActive}
-              ability={todaysAbilities[index]}
-              clickEffect={() => handleClick(todaysAbilities[index], index)}
-            ></SoundButton>
-          ))}
-      </div>
-      <div className="ability-selection">
-        <CharacterSelect
-          selectedCharacter={selectedCharacter}
-          characterOptions={characterOptions}
-          onCharacterSelect={onCharacterSelect}
-        ></CharacterSelect>
-        <Select
-          styles={customSelectStyles}
-          className="select"
-          options={abilityOptions}
-          onChange={onAbilitySelect}
-          placeholder="Select an ability..."
-          value={selectedAbility}
-        ></Select>
-      </div>
-      <button className="btn" onClick={handleSubmit}>
-        {isGameFinished ? "RESULTS" : "SUBMIT"}
-      </button>
     </>
   );
 }

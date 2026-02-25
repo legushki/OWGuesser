@@ -1,6 +1,7 @@
 import GamemodeButton from "../components/GamemodeButton";
 import "../styles/App.css";
 import "../styles/SharedComponents.css";
+
 function App() {
   return (
     <>
@@ -28,7 +29,7 @@ function App() {
         </div>
       </div>
       <div className="footer">
-        <a href="#">Privacy Policy</a>
+        <a href="https://www.termsfeed.com/live/5bec0245-140d-4e02-9472-fa95c619ef19">Privacy Policy</a>
       </div>
     </>
   );
