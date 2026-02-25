@@ -1,1 +1,0 @@
-const s="/OWGuesser_build/assets/1-BdfCnD_Z.jpg";export{s as default};
