@@ -8,7 +8,7 @@ function GamemodeButton ({image, title, desc, url})
     <Link to={url}>
         <div className="gamemode-button">
                 <div className="gamemode-image-bar">
-                    <img src={`/icons/${image}`} alt="" />
+                    <img src={`./icons/${image}`} alt="" />
                 </div>
                 <div className='description-bar'>
                     <h1>{title}</h1>
