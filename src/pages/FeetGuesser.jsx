@@ -53,6 +53,12 @@ function FeetGuesser() {
     setTodaysCharacters(chars);
     todaysImages.current = charImages;
 
+    //preload images
+    setTimeout(() => {
+      for (let i = 0; i < TOTAL_QUESTIONS; i++)
+        allImages[todaysImages.current[i]]();
+    }, 0);
+
     loadImage(0);
 
     const cookie = Cookies.get("feetAttempts");
@@ -76,7 +82,6 @@ function FeetGuesser() {
   };
 
   const handleSubmit = () => {
-    console.log(todaysCharacters);
     if (isGameFinished) {
       setIsModalOpen(true);
       return;

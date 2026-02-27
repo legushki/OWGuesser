@@ -53,6 +53,12 @@ function MapGuesser() {
     setTodaysMaps(maps);
     todaysImages.current = mapImages;
 
+    //preload images
+    setTimeout(() => {
+      for (let i = 0; i < TOTAL_QUESTIONS; i++)
+        allImages[todaysImages.current[i]]();
+    }, 0);
+
     loadImage(0);
 
     const cookie = Cookies.get("mapsAttempts");

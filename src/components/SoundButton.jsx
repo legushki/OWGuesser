@@ -32,7 +32,6 @@ function SoundButton({ isActive, isCorrect, ability, clickEffect }) {
     if (audio == null) return;
     if(isActive)
     {
-      // console.log(audio.duration);
       audio.currentTime = 0;
       audio.play();
       

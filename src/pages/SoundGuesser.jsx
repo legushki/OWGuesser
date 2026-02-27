@@ -105,7 +105,6 @@ function SoundGuesser() {
       }));
       setButtonStates(newStates);
     }, duration * 1000);
-    // console.log(duration);
 
     const newStates = buttonStates.map((state, i) =>
       index === i
