@@ -19,7 +19,7 @@ function MapGuesser() {
   var TOTAL_QUESTIONS = 3;
 
   const [todaysMaps, setTodaysMaps] = useState();
-  const [selectedMap, setSelectedMap] = useState(options[0]);
+  const [selectedMap, setSelectedMap] = useState();
   const [attempts, setAttempts] = useState([]);
   const [isGameFinished, setIsGameFinished] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -86,7 +86,7 @@ function MapGuesser() {
       setIsModalOpen(true);
       return;
     }
-    if (selectedMap === null) return;
+    if (!selectedMap) return;
 
     const newAttempts = [...attempts, selectedMap];
     if (newAttempts.length < TOTAL_QUESTIONS) {
@@ -95,6 +95,7 @@ function MapGuesser() {
       setIsGameFinished(true);
       setIsModalOpen(true);
     }
+    setSelectedMap(null);
     setAttempts(newAttempts);
     updateCookies(newAttempts);
   };

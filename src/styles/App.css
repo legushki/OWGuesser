@@ -1,6 +1,5 @@
 #gamemode-list {
   display: flex;
-  font-size: 0.9em;
 }
 #gamemode-list a
 {
@@ -14,10 +13,10 @@
   flex-flow: column;
   justify-content: center;
   margin-top: -1em;
-  font-size: 1vw;
 }
 .footer
 {
+  font-size: 0.8em;
   position: absolute;
   bottom: 0;
   text-align: center;

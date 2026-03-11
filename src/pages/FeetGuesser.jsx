@@ -20,7 +20,7 @@ function FeetGuesser() {
   var TOTAL_QUESTIONS = 3;
 
   const [todaysCharacters, setTodaysCharacters] = useState();
-  const [selectedCharacter, setSelectedCharacter] = useState(options[0]);
+  const [selectedCharacter, setSelectedCharacter] = useState();
   const [attempts, setAttempts] = useState([]);
   const [isGameFinished, setIsGameFinished] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,6 +29,7 @@ function FeetGuesser() {
   const todaysImages = useRef([]);
   const [loadedImage, setLoadedImage] = useState();
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
   useEffect(() => {
     const today = new Date();
     const rng = seedrandom(
@@ -86,7 +87,7 @@ function FeetGuesser() {
       setIsModalOpen(true);
       return;
     }
-    if (selectedCharacter === null) return;
+    if (!selectedCharacter) return;
 
     const newAttempts = [...attempts, selectedCharacter];
     if (newAttempts.length < TOTAL_QUESTIONS) {
@@ -95,6 +96,7 @@ function FeetGuesser() {
       setIsGameFinished(true);
       setIsModalOpen(true);
     }
+    setSelectedCharacter(null);
     setAttempts(newAttempts);
     updateCookies(newAttempts);
   };
@@ -123,7 +125,7 @@ function FeetGuesser() {
     };
 
     return (
-      <>
+    <>
         <h2>RESULTS</h2>
         <span>The characters were:</span>
         <div className="answers-row">
