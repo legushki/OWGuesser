@@ -216,7 +216,7 @@ function SoundGuesser() {
             SHARE
           </button>
           <Link to={"/"}>
-            <button className="btn">OTHER GAMES</button>
+            <button className="btn" tabIndex={-1}>OTHER GAMES</button>
           </Link>
         </div>
         {showClipboardMsg && (

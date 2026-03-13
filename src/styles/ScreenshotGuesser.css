@@ -1,7 +1,7 @@
 .screenshot {
   border: 0.1em solid black;
-  width: 40em;
-  height: 22.5em;
+  width: min(40em, 90%);
+  aspect-ratio: calc(16/9);
   margin-bottom: 0.5em;
 }
 .attempt-icons {

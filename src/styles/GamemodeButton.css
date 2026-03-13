@@ -1,10 +1,11 @@
 .gamemode-button {
   display: flex;
   flex-flow: column;
-  transition: 0.3s;
+  transition: 0.3s transform;
+  font-size: min(1em, 1.2vw);
   width: 25.2em;
   aspect-ratio: 3 / 4;
-  margin: 0.96em;
+  margin: 1em;
   overflow: hidden;
   border-radius: 1em;
 }
@@ -57,4 +58,16 @@
   text-align: center;
   margin: 0.5em;
   color: black;
+}
+@media screen and (max-width: 650px) {
+  .gamemode-button
+  {
+    font-size: clamp(0.2em, 1.3dvh, 1em);
+    margin: 0.5em;
+    aspect-ratio: 7/5;
+  }
+  .description-bar
+  {
+    display: none;
+  }
 }

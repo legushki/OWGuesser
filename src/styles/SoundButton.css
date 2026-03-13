@@ -2,14 +2,16 @@
     display: flex;
     flex-flow: column;
     position: relative;
+    
 }
 
 .sound-effects__button {
+    font-size: clamp(0.5em, 2vw, 1em);
     background-color: #45516b;
-    width: 9.4rem;
+    width: 9.4em;
     aspect-ratio: 1;
-    border-radius: 1.4rem;
-    border: 0.25rem #1d222d solid;
+    border-radius: 1.4em;
+    border: 0.25em #1d222d solid;
     transition: 0.3s;
     transition-property: border-color;
     padding:0;
@@ -30,13 +32,13 @@
 }
 
 .sound-effects__button:hover {
-    border: 0.25rem #2b93df solid;
+    border: 0.25em #2b93df solid;
     transition: 0.3s;
 }
 
 .sound-effects__description {
     position: absolute;
-    top: 9.4rem;
+    top: 9.4em;
     display: flex;
     align-self: center;
     justify-self: center;

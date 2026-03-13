@@ -157,7 +157,7 @@ function MapGuesser() {
             SHARE
           </button>
           <Link to={"/"}>
-            <button className="btn">OTHER GAMES</button>
+            <button tabIndex={-1} className="btn">OTHER GAMES</button>
           </Link>
         </div>
         {showClipboardMsg && (

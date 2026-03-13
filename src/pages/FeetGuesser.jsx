@@ -120,6 +120,7 @@ function FeetGuesser() {
         emojis +
         "\nhttps://OWGuesser.com";
       navigator.clipboard.writeText(clipboardText);
+      
       setShowClipboardMsg(true);
       setTimeout(() => setShowClipboardMsg(false), 1500);
     };
@@ -163,7 +164,7 @@ function FeetGuesser() {
             SHARE
           </button>
           <Link to={"/"}>
-            <button className="btn">OTHER GAMES</button>
+            <button className="btn" tabIndex={-1}>OTHER GAMES</button>
           </Link>
         </div>
         {showClipboardMsg && (
