@@ -24,7 +24,7 @@ function MapGuesser() {
   const [isGameFinished, setIsGameFinished] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const allImages = import.meta.glob("../assets/maps/*/*.{png,jpg,jpeg}");
+  const allImages = import.meta.glob("../assets/maps/*/*.webp");
   const todaysImages = useRef([]);
   const [loadedImage, setLoadedImage] = useState();
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -40,7 +40,14 @@ function MapGuesser() {
     let maps = [];
     let mapImages = [];
 
+    let failsafe = 0;
     while (maps.length < TOTAL_QUESTIONS) {
+      failsafe++;
+      if(failsafe >=10000)
+      {
+        alert("something went wrong :(");
+        break;
+      }
       let map = options[Math.floor(rng() * options.length)];
       if (maps.includes(map)) continue;
       let filtered = Object.keys(allImages).filter((path) =>
