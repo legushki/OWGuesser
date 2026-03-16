@@ -384,7 +384,7 @@
         ]
     },
     {
-        "key": "soldier: 76",
+        "key": "soldier 76",
         "name": "Soldier: 76",
         "portrait": "https://d15f34w2p8l1cc.cloudfront.net/overwatch/20b4ef00ed05d6dba75df228241ed528df7b6c9556f04c8070bad1e2f89e0ff5.png",
         "abilities": [
@@ -520,5 +520,66 @@
             "Transcendence",
             "Snap Kick"
         ]
+    },
+    {
+        "key": "domina",
+        "name": "Domina",
+        "portrait":"https://d15f34w2p8l1cc.cloudfront.net/overwatch/1161c112292c56c052c0ae711792fcde06e3251b98bc9709e582dd7585b5dcd6.png",
+        "abilities":[
+            "Photon Magnum",
+            "Barrier Array",
+            "Sonic Repulsors",
+            "Crystal Charge",
+            "Panopticon"   
+        ]
+    },
+    {
+        "key": "anran",
+        "name": "Anran",
+        "portrait":"https://d15f34w2p8l1cc.cloudfront.net/overwatch/2cdf460c6080a031258e513713d1d635a8e68799cb5d7e27774be8963e95f6a3.png",
+        "abilities":[
+            "Zhuque Fans",
+            "Fan the Flames",
+            "Dancing Blaze",
+            "Inferno Rush",
+            "Vermillion Ascent",
+            "Vermillion Revival"
+        ]
+    },
+    {
+        "key":"emre",
+        "name":"Emre",
+        "portrait":"https://d15f34w2p8l1cc.cloudfront.net/overwatch/c51e2f698138861c0e3b6cfab3c3ca9d67fd709be175e7c397aa6f2649712a30.png",
+        "abilities":[
+            "Synthetic Burst Rifle",
+            "Cyber Frag",
+            "Override Protocol",
+            "Siphon Blaster"
+        ]
+    },
+    {
+        "key":"jetpack-cat",
+        "name":"Jetpack Cat",
+        "portrait":"https://d15f34w2p8l1cc.cloudfront.net/overwatch/03a184cd0de27091e0099ac22635ad9615a8f6997881a5c25cc5f2444764f729.png",
+        "abilities":[
+            "Biotic Pawjectiles",
+            "Frenetic Flight",
+            "Lifeline",
+            "Purr",
+            "Catnapper"
+        ]
+    },
+    {
+        "key":"mizuki",
+        "name":"Mizuki",
+        "portrait":"https://d15f34w2p8l1cc.cloudfront.net/overwatch/a9733c2367e0cbd70b9316fd2e1e17028653ec56d0051ea6ff098531dc4f99fc.png",
+        "abilities":[
+            "Spirit Glaive",
+            "Healing Kasa",
+            "Binding Chain",
+            "Katashiro Return",
+            "Kekkai Sanctuary"
+        ]  
+
     }
 ]

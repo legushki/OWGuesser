@@ -25,7 +25,7 @@ function FeetGuesser() {
   const [isGameFinished, setIsGameFinished] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const allImages = import.meta.glob("../assets/feet/*/*.{png,jpg,jpeg,webp}");
+  const allImages = import.meta.glob("../assets/feet/*/*.webp");
   const todaysImages = useRef([]);
   const [loadedImage, setLoadedImage] = useState();
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -41,11 +41,18 @@ function FeetGuesser() {
     let chars = [];
     let charImages = [];
 
+    let failsafe = 0;
     while (chars.length < TOTAL_QUESTIONS) {
+      failsafe++;
+      if(failsafe >= 10000)
+      {
+        alert("something went wrong :(");
+        break;
+      }
       let char = options[Math.floor(rng() * options.length)];
       if (chars.includes(char)) continue;
       let filtered = Object.keys(allImages).filter((path) =>
-        path.includes(`${char.value}/`),
+        path.toLowerCase().includes(`${char.value.toLowerCase()}/`),
       );
       if (filtered.length === 0) continue;
       chars.push(char);
