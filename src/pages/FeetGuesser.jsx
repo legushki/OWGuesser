@@ -76,7 +76,7 @@ function FeetGuesser() {
       loadImage(Math.min(prevAttempts.length, TOTAL_QUESTIONS - 1));
       if (prevAttempts.length === TOTAL_QUESTIONS) {
         setIsGameFinished(true);
-        setIsModalOpen(true);
+        // setIsModalOpen(true);
       }
     }
   }, []);

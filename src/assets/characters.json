@@ -38,11 +38,11 @@
         "name": "Bastion",
         "portrait": "https://d15f34w2p8l1cc.cloudfront.net/overwatch/4d715f722c42215072b5dd0240904aaed7b5285df0b2b082d0a7f1865b5ea992.png",
         "abilities": [
-            "Configuration: Assault",
-            "Configuration: Recon",
+            "Configuration Assault",
+            "Configuration Recon",
             "A-36 Tactical Grenade",
             "Reconfigure",
-            "Configuration: Artillery"
+            "Configuration Artillery"
         ]
     },
     {

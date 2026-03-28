@@ -15,8 +15,10 @@ import seedrandom from "seedrandom";
 import Cookies from "js-cookie";
 
 function SoundGuesser() {
+  var TOTAL_QUESTIONS = 4;
+
   const [buttonStates, setButtonStates] = useState(
-    Array.from({ length: 4 }, () => ({ isActive: false, isCorrect: null })),
+    Array.from({ length: TOTAL_QUESTIONS }, () => ({ isActive: false, isCorrect: null })),
   );
   const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [selectedAbility, setSelectedAbility] = useState(null);
@@ -34,27 +36,30 @@ function SoundGuesser() {
   }));
   const [abilityOptions, setAbilityOptions] = useState([]);
   const [todaysAbilities, setTodaysAbilities] = useState([]);
-  const [attempts, setAttempts] = useState([null, null, null, null]);
+  const [attempts, setAttempts] = useState(Array.from({ length: TOTAL_QUESTIONS }, () => null));
 
   useEffect(() => {
-    const today = new Date();
-    const rng = seedrandom(
-      today.getUTCFullYear() * 10000 +
-        (today.getUTCMonth() + 1) * 100 +
-        today.getUTCDate(),
-    );
-    let abilities = [];
-    let recorded = [...RecordedAbilitiesJson];
-    let failsafe = 0;
-    while (abilities.length < 4 && failsafe < 1000) {
-      const name = recorded[Math.floor(rng() * recorded.length)];
-      const char = CharactersJson.find((c) => c.abilities.includes(name));
-      if (!abilities.some((ability) => ability.name === name)) {
-        abilities = [...abilities, { name: name, character: char }];
-      }
-      failsafe++;
-    }
-    setTodaysAbilities(abilities);
+    // const today = new Date();
+    // const rng = seedrandom(
+    //   today.getUTCFullYear() * 10000 +
+    //   (today.getUTCMonth() + 1) * 100 +
+    //   today.getUTCDate(),
+    // );
+    // let abilities = [];
+    // let recorded = [...RecordedAbilitiesJson];
+    // let failsafe = 0;
+    // while (abilities.length < TOTAL_QUESTIONS && failsafe < 1000) {
+    //   const name = recorded[Math.floor(rng() * recorded.length)];
+
+    //   const char = CharactersJson.find((c) =>
+    //     c.abilities.map(n => n.toLowerCase()).includes(name.toLowerCase()));
+    //   if (char == undefined) continue;
+    //   if (!abilities.some((ability) => ability.name.toLowerCase() == name.toLowerCase())) {
+    //     abilities = [...abilities, { name: name, character: char }];
+    //   }
+    //   failsafe++;
+    // }
+    setTodaysAbilities(chooseAbilities());
 
     const cookie = Cookies.get("soundAttempts");
     if (cookie) {
@@ -68,10 +73,41 @@ function SoundGuesser() {
       setButtonStates(newStates);
       if (prevAttempts.every((attempt) => attempt !== null)) {
         setIsGameFinished(true);
-        setIsModalOpen(true);
+        // setIsModalOpen(true);
       }
     }
   }, []);
+
+  const chooseAbilities = () => {
+    const today = new Date();
+    const rng = seedrandom(
+      today.getUTCFullYear() * 10000 +
+      (today.getUTCMonth() + 1) * 100
+    );
+    let recorded = [...RecordedAbilitiesJson];
+    //random shuffle based on current month
+    for (let i = recorded.length - 1; i > 0; i--) {
+      const j = Math.floor(rng() * (i + 1));
+
+      [recorded[i], recorded[j]] = [recorded[j], recorded[i]];
+    }
+    let startingIndex = ((today.getUTCDate() - 1) * TOTAL_QUESTIONS) % recorded.length;
+
+    let chosenAbilities = [];
+    let steps = TOTAL_QUESTIONS;
+    for (let i = 0; i < steps; i++) {
+      const name = recorded[(startingIndex + i) % recorded.length];
+      const char = CharactersJson.find((c) =>
+        c.abilities.map(n => n.toLowerCase()).includes(name.toLowerCase()));
+      if (char == undefined) {
+        console.error("error finding an ability, retrying");
+        steps +=1;
+        continue;
+      }
+      chosenAbilities.push({ name: name, character: char });
+    }
+    return chosenAbilities;
+  }
 
   const updateCookies = (attempts) => {
     const midnight = new Date();
