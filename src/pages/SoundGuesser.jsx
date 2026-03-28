@@ -59,7 +59,8 @@ function SoundGuesser() {
     //   }
     //   failsafe++;
     // }
-    setTodaysAbilities(chooseAbilities());
+    const abilities = chooseAbilities();
+    setTodaysAbilities(abilities);
 
     const cookie = Cookies.get("soundAttempts");
     if (cookie) {

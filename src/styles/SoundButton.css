@@ -2,7 +2,7 @@
     display: flex;
     flex-flow: column;
     position: relative;
-    
+
 }
 
 .sound-effects__button {
@@ -14,7 +14,7 @@
     border: 0.25em #1d222d solid;
     transition: 0.3s;
     transition-property: border-color;
-    padding:0;
+    padding: 0;
     justify-content: center;
     align-items: center;
     display: flex;
@@ -37,6 +37,7 @@
 }
 
 .sound-effects__description {
+    font-size: clamp(0.5em, 2vw, 1em);
     position: absolute;
     top: 9.4em;
     display: flex;
