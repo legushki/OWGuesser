@@ -63,7 +63,10 @@ function MapGuesser() {
     //preload images
     setTimeout(() => {
       for (let i = 0; i < TOTAL_QUESTIONS; i++)
-        allImages[todaysImages.current[i]]();
+      {
+        const img = new Image();
+        img.src = todaysImages[i];
+      }
     }, 0);
 
     loadImage(0);

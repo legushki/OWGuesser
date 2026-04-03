@@ -61,13 +61,17 @@ function FeetGuesser() {
     setTodaysCharacters(chars);
     todaysImages.current = charImages;
 
+    loadImage(0);
+    
     //preload images
     setTimeout(() => {
       for (let i = 0; i < TOTAL_QUESTIONS; i++)
-        allImages[todaysImages.current[i]]();
-    }, 0);
+      {
+        const img = new Image();
+        img.src = todaysImages[i];
+      }
 
-    loadImage(0);
+    }, 0);
 
     const cookie = Cookies.get("feetAttempts");
     if (cookie) {
